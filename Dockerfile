@@ -1,15 +1,15 @@
-FROM alpine:3.4
+FROM alpine:3.5
 
-MAINTAINER xujinkai <jack777@xujinkai.net>
+MAINTAINER sinnerliu
 
 RUN apk update && \
 	apk add --no-cache --update bash && \
 	mkdir -p /conf && \
 	mkdir -p /conf-copy && \
-	mkdir -p /data && \
 	apk add --no-cache --update aria2 && \
 	apk add git && \
 	git clone https://github.com/ziahamza/webui-aria2 /aria2-webui && \
+	mkdir -p /aria2-webui/data && \
 	apk add --update darkhttpd
 	
 ADD files/start.sh /conf-copy/start.sh
@@ -19,10 +19,9 @@ ADD files/on-complete.sh /conf-copy/on-complete.sh
 RUN chmod +x /conf-copy/start.sh
 
 WORKDIR /
-VOLUME ["/data"]
-VOLUME ["/conf"]
+
 EXPOSE 6800
 EXPOSE 80
-EXPOSE 8080
+
 
 CMD ["/conf-copy/start.sh"]
