@@ -8,7 +8,7 @@ RUN apk update && \
 	mkdir -p /conf-copy && \
 	apk add --no-cache --update aria2 && \
 	apk add git && \
-	git clone https://github.com/ziahamza/webui-aria2 /aria2-webui && \
+	git clone https://github.com/sinnerliu/yaaw-zh /aria2-webui && \
 	mkdir -p /aria2-webui/data/dl && \
 	apk add --update darkhttpd
 	
